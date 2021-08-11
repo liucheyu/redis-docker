@@ -1,0 +1,99 @@
+version: "2.0"
+
+services:
+  6379redis:
+    image: redis:6.2.5-alpine
+    container_name: 6379redis
+    ports:
+      - 6379:6379
+      - 16379:16379
+    #network_mode: "host"
+    #entrypoint:  sh -c 'redis-server /usr/local/etc/redis/customize/redis.conf --port 6379 --cluster-announce-ip 172.18.27.183 --cluster-announce-port 6379 && echo "yes"|redis-cli --cluster create 172.18.27.183:6379 172.18.27.183:6380 172.18.27.183:6381 172.18.27.183:6382 172.18.27.183:6383 172.18.27.183:6384 --cluster-replicas 1'
+    entrypoint:  [redis-server,/usr/local/etc/redis/customize/redis.conf,--port,"6379",--cluster-announce-ip,"172.18.27.183",--cluster-announce-port,"6379"]
+    volumes:
+      - /home/liucheyu/docker/redis/conf:/usr/local/etc/redis/conf
+      - /home/liucheyu/docker/redis/6379:/usr/local/etc/redis/customize
+      
+  6380redis:
+    image: redis:6.2.5-alpine
+    container_name: 6380redis
+    ports: 
+      - 6380:6380
+      - 16380:16380
+    #network_mode: "host"
+    #entrypoint: redis-server /usr/local/etc/redis/customize/redis.conf
+    entrypoint:  [redis-server, /usr/local/etc/redis/customize/redis.conf,--port,"6380",--cluster-announce-ip,"172.18.27.183",--cluster-announce-port,"6380"]
+    volumes:
+      - /home/liucheyu/docker/redis/conf:/usr/local/etc/redis/conf
+      - /home/liucheyu/docker/redis/6380:/usr/local/etc/redis/customize    
+
+  6381redis:
+    image: redis:6.2.5-alpine
+    container_name: 6381redis
+    ports: 
+      - 6381:6381
+      - 16381:16381
+    #network_mode: "host"
+    #entrypoint: redis-server /usr/local/etc/redis/customize/redis.conf
+    entrypoint:  [redis-server, /usr/local/etc/redis/customize/redis.conf,--port,"6381",--cluster-announce-ip,"172.18.27.183",--cluster-announce-port,"6381"]
+    volumes:
+      - /home/liucheyu/docker/redis/conf:/usr/local/etc/redis/conf
+      - /home/liucheyu/docker/redis/6381:/usr/local/etc/redis/customize   
+
+  6382redis:
+    image: redis:6.2.5-alpine
+    container_name: 6382redis
+    ports: 
+      - 6382:6382
+      - 16382:16382
+    #network_mode: "host"
+    #entrypoint: redis-server /usr/local/etc/redis/customize/redis.conf
+    entrypoint:  [redis-server, /usr/local/etc/redis/customize/redis.conf,--port,"6382",--cluster-announce-ip,"172.18.27.183",--cluster-announce-port,"6382"]
+    volumes:
+      - /home/liucheyu/docker/redis/conf:/usr/local/etc/redis/conf
+      - /home/liucheyu/docker/redis/6382:/usr/local/etc/redis/customize   
+
+  6383redis:
+    image: redis:6.2.5-alpine
+    container_name: 6383redis
+    ports: 
+      - 6383:6383
+      - 16383:16383
+    #network_mode: "host"
+    #entrypoint: redis-server /usr/local/etc/redis/customize/redis.conf
+    entrypoint:  [redis-server, /usr/local/etc/redis/customize/redis.conf,--port,"6383",--cluster-announce-ip,"172.18.27.183",--cluster-announce-port,"6383"]
+    volumes:
+      - /home/liucheyu/docker/redis/conf:/usr/local/etc/redis/conf
+      - /home/liucheyu/docker/redis/6383:/usr/local/etc/redis/customize   
+
+  6384redis:
+    image: redis:6.2.5-alpine
+    container_name: 6384redis
+    ports: 
+      - 6384:6384
+      - 16384:16384
+    #network_mode: "host"
+    #entrypoint: redis-server /usr/local/etc/redis/customize/redis.conf
+    entrypoint:  [redis-server, /usr/local/etc/redis/customize/redis.conf,--port,"6384",--cluster-announce-ip,"172.18.27.183",--cluster-announce-port,"6384"]
+    volumes:
+      - /home/liucheyu/docker/redis/conf:/usr/local/etc/redis/conf
+      - /home/liucheyu/docker/redis/6384:/usr/local/etc/redis/customize
+
+
+  #redis-creater:
+  #  image: redis:6.2.5-alpine
+  #  container_name: redis-creater
+    #network_mode: "host"  
+  #  volumes:
+  #    - /home/liucheyu/docker/redis/conf:/usr/local/etc/redis/conf
+  #    - /home/liucheyu/docker/redis/redis-creater:/usr/local/etc/redis/customize
+  #  entrypoint: redis-server /usr/local/etc/redis/customize/redis.conf
+  #  command: sh -c echo "yes"|redis-cli --cluster create 172.18.27.183:6379 172.18.27.183:6380 172.18.27.183:6381 172.18.27.183:6382 172.18.27.183:6383 172.18.27.183:6384 --cluster-replicas 1
+  #  depends_on: 
+  #    - "6379redis"
+  #    - "6380redis"      
+  #    - "6381redis"
+  #    - "6382redis"
+  #    - "6383redis"
+  #    - "6384redis"
+      
