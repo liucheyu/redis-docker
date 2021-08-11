@@ -1,11 +1,12 @@
+redis-docker使用方式
+---
+執行 redisUp.sh -cf[conf目錄位置] -ct[自訂目錄位置] -p[起始port] -n[cluster數] -h[host ip]
 
-docker-compose中的command和entrypint設定在某個node跑兩個指令，往往都失敗。
+不帶任何參數也可執行，此時會於終端機詢問是否要指定這些參數，enter按到底會使用預設的參數
 
-導致能起redis但cluster沒辦法光執行docker-compose時就可以起來。
-
-執行新增cluster的2種方式
-1. 執行完docker-compose後，手動執行docker exec
-2. 用dockerfile自製預設跑redis-server指令，docker-compose再額外執行redis-cli新增cluster
-3. 掛入執行兩個指令的bash，增加docker-compose增加environment參數
-
-另外一個做法是不用docker-compose，全部寫bash迴圈執行docker run把參數全部代完，還可以指定要跑幾個台
+預設參數如下
+- conf目錄位置: 此執行檔位置/conf
+- 自訂目錄位置: 此執行檔位置/customize
+- 起始port: 自6379 port開始
+- cluster數: 預設6個
+- host ip: 使用docker預設bridge的ip
