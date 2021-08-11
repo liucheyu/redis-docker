@@ -1,6 +1,6 @@
 redis-docker使用方式
 ---
-執行 redisUp.sh -cf[conf目錄位置] -ct[自訂目錄位置] -p[起始port] -n[cluster數] -h[host ip]
+執行 redisUp.sh -f[conf目錄位置] -c[自訂目錄位置] -p[起始port] -n[cluster數] -h[host ip]
 
 不帶任何參數也可執行，此時會於終端機詢問是否要指定這些參數，enter按到底會使用預設的參數
 
